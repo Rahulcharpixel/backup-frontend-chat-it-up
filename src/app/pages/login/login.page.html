@@ -1,0 +1,54 @@
+<!-- <ion-header> -->
+  <ion-toolbar class="login-header">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="login-title">Login</ion-title>
+    <p class="login-subtitle">Enter your 10-digit mobile number to continue.</p>
+  </ion-toolbar>
+<!-- </ion-header> -->
+
+<ion-content>
+  <div class="login-container">
+    <!-- <h2>Login</h2>
+    <p>Enter your 10-digit mobile number to continue.</p> -->
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>Mobile</legend>
+          <ion-input
+            formControlName="mobile"
+            placeholder="Enter mobile number"
+            type="tel"
+            maxlength="10"
+          ></ion-input>
+          <div
+            *ngIf="loginForm.get('mobile')?.invalid && (loginForm.get('mobile')?.touched || loginForm.get('mobile')?.dirty)"
+            class="error-message"
+          >
+            <small *ngIf="loginForm.get('mobile')?.errors?.['required']"
+              >Mobile number is required.</small
+            >
+            <small *ngIf="loginForm.get('mobile')?.errors?.['pattern']"
+              >Mobile number must be 10 digits.</small
+            >
+          </div>
+        </fieldset>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        [disabled]="loginForm.invalid"
+        class="login-button"
+        (click)="login()"
+        >Login</ion-button
+      >
+    </form>
+
+    <p class="register-prompt">
+      Don't have an account?
+      <a class="registration-link" routerLink="/registration">Register</a>
+    </p>
+  </div>
+</ion-content>

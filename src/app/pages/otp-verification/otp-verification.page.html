@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <div>
+      <ion-title>OTP Verification</ion-title>
+      <p>Please enter your correct OTP for the number verification process.</p>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="otpForm" (ngSubmit)="verify()">
+    <div class="otp-container" formArrayName="otpInputs">
+      <div class="otp-input">
+        <ion-input *ngFor="let control of otpControls.controls; let i = index" [formControlName]="i" maxlength="1"
+          (ionInput)="onInputChange(i)" #otpInput type="text">
+        </ion-input>
+      </div>
+
+      <ion-button expand="block" [disabled]="otpForm.invalid" class="verify-button" (click)="verify()">Verify</ion-button>
+
+      <p class="resend-otp">
+        <a (click)="resendOtp()">Resend OTP</a>
+      </p>
+    </div>
+  </form>
+</ion-content>

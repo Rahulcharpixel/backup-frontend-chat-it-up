@@ -1,0 +1,15 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Send Chat Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Receiver ID</ion-label>
+    <ion-input [(ngModel)]="receiverId"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="sendChatRequest()">Send Request</ion-button>
+</ion-content>

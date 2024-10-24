@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Quiz List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addQuiz()">Add Quiz</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list *ngIf="quizStore.quizzes.length > 0; else noQuizzes">
+    <ion-item *ngFor="let quiz of quizStore.quizzes">
+      <ion-label>
+        <h2>{{ quiz.title }}</h2>
+        <p>Subcategories: {{ quiz.subcategories.length }}</p>
+      </ion-label>
+      <ion-button *ngIf="quiz._id" (click)="updateQuiz(quiz._id)">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="quiz._id" (click)="deleteQuiz(quiz._id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noQuizzes>
+    <ion-item>
+      <ion-label>No quizzes available. Add a quiz to get started.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

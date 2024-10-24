@@ -1,0 +1,46 @@
+.otp-container {
+    margin: 2rem;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .otp-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        gap: 1rem;
+
+        ion-input {
+            width: 50px;
+            text-align: center;
+            border: solid 2px #15eaf6;
+            border-radius: 50%;
+        }
+    }
+
+    .resend-otp a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        color: #15eaf6;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.verify-button {
+    height: 50px;
+    --border-radius: 28px;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    --box-shadow: none;
+    --background: #15eaf6;
+    cursor: pointer;
+}
