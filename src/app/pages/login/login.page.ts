@@ -1,48 +1,49 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { OtpService } from "src/app/services/otp.service";
-
-import { otpStore } from "src/app/store/otp.store";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OtpService } from 'src/app/services/otp.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.scss"],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
   loginForm: FormGroup;
 
-  mobile!: string;
-
   constructor(
     private fb: FormBuilder,
     private otpService: OtpService,
-    private router: Router
+    private router: Router,
+    private loadingController: LoadingController
   ) {
     this.loginForm = this.fb.group({
-      mobile: ["", [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     });
   }
 
-  login() {
+  async login() {
     if (this.loginForm.valid) {
-      this.mobile = this.loginForm.value.mobile;
+      const loading = await this.loadingController.create({
+        spinner: 'circles',
+        duration: 5000,
+      });
+      await loading.present();
 
-      console.log("==>", this.mobile);
-      this.otpService.login(this.mobile).subscribe({
-        next: (response: any) => {
+      this.otpService.login(this.loginForm.value.mobile).subscribe({
+        next: async (response: any) => {
           console.log(`Your OTP is: ${response.otp}`);
-
-          localStorage.setItem('mobile', this.mobile);
+          localStorage.setItem('mobile', this.loginForm.value.mobile);
           localStorage.setItem('authToken', response.token);
-
-          this.router.navigate(["/otp-verification"]);
+          await loading.dismiss();
+          this.router.navigate(['/otp-verification']);
         },
-        error: (error) => {
-          console.error("Error sending OTP", error);
+        error: async (error) => {
+          await loading.dismiss();
+          console.error('Error sending OTP', error);
           alert(error.error.message);
-        },
+        }
       });
     }
   }

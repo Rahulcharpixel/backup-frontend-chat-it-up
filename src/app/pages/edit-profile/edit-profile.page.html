@@ -1,0 +1,44 @@
+
+<ion-toolbar>
+  <ion-buttons>
+    <ion-back-button defaultHref="/settings"></ion-back-button>
+    <ion-title class="title">Edit Profile</ion-title>
+  </ion-buttons>
+  
+</ion-toolbar>  
+
+<ion-content>
+  <div *ngIf="userProfileStore.loading">Loading...</div>
+  <div *ngIf="userProfileStore.error" class="error">{{ userProfileStore.error }}</div>
+  <div class="profile-container"  *ngIf="!userProfileStore.loading || !userProfileStore.error">
+    <ion-avatar slot="start">
+      <ion-img [src]="imageUrl"></ion-img>
+    </ion-avatar>
+    <form [formGroup]="editProfileForm" (ngSubmit)="updateProfile()">
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>Name</legend>
+          <ion-input formControlName="name" type="text" placeholder="Enter your name"></ion-input>
+        </fieldset>
+      </ion-item>
+
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>Email</legend>
+          <ion-input formControlName="email" type="email" placeholder="Enter your email"></ion-input>
+        </fieldset>
+      </ion-item>
+
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>Mobile</legend>
+          <ion-input formControlName="mobile" type="tel" maxlength="10" placeholder="Enter mobile number"></ion-input>
+        </fieldset>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" [disabled]="editProfileForm.invalid || userProfileStore.loading" class="update-button">
+        Update Profile
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

@@ -10,15 +10,16 @@ import { HttpClientModule } from "@angular/common/http";
 import { LoginPageModule } from "./pages/login/login.module";
 import { OtpVerificationPageModule } from "./pages/otp-verification/otp-verification.module";
 import { ReactiveFormsModule } from "@angular/forms";
-import { TabsPageModule } from "./pages/tabs/tabs.module";
+
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { TabsComponent } from "./components/tabs/tabs.component";
 
 // Provide your Socket.IO server URL
 const config: SocketIoConfig = { url: 'http://localhost:80', options: {} };
 
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent,TabsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -26,7 +27,6 @@ const config: SocketIoConfig = { url: 'http://localhost:80', options: {} };
     LoginPageModule,
     OtpVerificationPageModule,
     ReactiveFormsModule,
-    TabsPageModule,
     HttpClientModule,
    
     SocketIoModule.forRoot(config)

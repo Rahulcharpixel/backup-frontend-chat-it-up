@@ -9,20 +9,20 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./chat-request.page.scss'],
 })
 export class ChatRequestPage {
-  senderId = '';  
-  receiverId = '';
+  // senderId = '';  
+  // receiverId = '';
 
   constructor(private chatService: ChatService
   ) {}
 
-  sendChatRequest() {
-    this.chatService.sendChatRequest(this.senderId, this.receiverId).subscribe(
-      res => {
-        console.log('Chat request sent', res);
-      },
-      err => {
-        console.error('Error sending chat request', err);
-      }
-    );
-  }
+  // sendChatRequest() {
+  //   this.chatService.sendChatRequest(this.senderId, this.receiverId).subscribe(
+  //     res => {
+  //       console.log('Chat request sent', res);
+  //     },
+  //     err => {
+  //       console.error('Error sending chat request', err);
+  //     }
+  //   );
+  // }
 }

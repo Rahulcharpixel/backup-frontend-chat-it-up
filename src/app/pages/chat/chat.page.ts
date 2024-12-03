@@ -10,49 +10,49 @@ import { SocketService } from 'src/app/services/socket.service';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  userId = '';
-  chatId = '';
-  senderId = '';
-  message = '';
-  messages: any[] = [];
+  // userId = '';
+  // chatId = '';
+  // senderId = '';
+  // message = '';
+  // messages: any[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private chatService: ChatService,
-    private socketService: SocketService
+    // private route: ActivatedRoute,
+    // private chatService: ChatService,
+    // private socketService: SocketService
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.userId = params['userId'];
+  //   this.route.params.subscribe(params => {
+  //     this.userId = params['userId'];
 
-      this.startChatWithUser();
-    });
+  //     this.startChatWithUser();
+  //   });
   }
 
-  startChatWithUser() {
-    this.chatService.sendChatRequest(this.senderId, this.userId).subscribe(
-      chat => {
-        this.chatId = chat._id;
-        this.socketService.joinChat(this.chatId);
-        this.loadMessages();
-      },
-      err => console.error(err)
-    );
-  }
+  // startChatWithUser() {
+  //   this.chatService.sendChatRequest(this.senderId, this.userId).subscribe(
+  //     chat => {
+  //       this.chatId = chat._id;
+  //       this.socketService.joinChat(this.chatId);
+  //       this.loadMessages();
+  //     },
+  //     err => console.error(err)
+  //   );
+  // }
 
-  loadMessages() {
-    this.chatService.getMessages(this.chatId).subscribe(
-      res => this.messages = res.messages,
-      err => console.error(err)
-    );
-  }
+  // loadMessages() {
+  //   this.chatService.getMessages(this.chatId).subscribe(
+  //     res => this.messages = res.messages,
+  //     err => console.error(err)
+  //   );
+  // }
 
-  sendMessage() {
-    if (this.message.trim()) {
-      this.socketService.sendMessage(this.chatId, this.senderId, this.message);
-      this.message = '';
-      console.log('-->', this.message='');
-    }
-  }
+  // sendMessage() {
+  //   if (this.message.trim()) {
+  //     this.socketService.sendMessage(this.chatId, this.senderId, this.message);
+  //     this.message = '';
+  //     console.log('-->', this.message='');
+  //   }
+  // }
 }

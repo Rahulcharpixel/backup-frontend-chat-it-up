@@ -1,26 +1,60 @@
-<ion-header>
-  <ion-toolbar>
+
+  <ion-toolbar class="setting-title">
     <ion-title>Settings</ion-title>
   </ion-toolbar>
-</ion-header>
 
 <ion-content>
-  <ion-card>
+
+  <ion-card >
     <ion-item lines="none">
-      <ion-avatar slot="start">
+      <!-- <ion-avatar slot="start" (click)="selectImageSource()"> 
+        <ion-img [src]="profileImage || 'assets/default-avatar.png'"></ion-img> -->
+        <ion-avatar slot="start" >
+          <ion-img ></ion-img>
       </ion-avatar>
       <ion-label>
-        <h2>name</h2>
-        <p>mobile no:</p>
+        <h2>{{ name }}</h2>
+        <p>{{ mobile }}</p>
       </ion-label>
     </ion-item>
   </ion-card>
 
   <ion-list>
-    <ion-item button (click)="logout()">
+    <ion-item lines="full" button routerLink="/edit-profile">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-label>Edit Profile</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full" button>
+      <ion-icon name="people-outline" slot="start"></ion-icon>
+      <ion-label>Blocked users</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full" button (click)="deleteAccount()"> 
+      <ion-icon name="trash-outline" slot="start"></ion-icon>
+      <ion-label>Delete account</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full" button>
+      <ion-icon name="shield-outline" slot="start"></ion-icon>
+      <ion-label>Privacy policy</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full" button>
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-label>Terms & condition</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full"  button (click)="logout()">
       <ion-icon name="log-out-outline" slot="start"></ion-icon>
       <ion-label>Logout</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
   </ion-list>
+
 </ion-content>

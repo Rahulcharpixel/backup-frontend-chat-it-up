@@ -44,3 +44,38 @@
     --background: #15eaf6;
     cursor: pointer;
 }
+
+ion-toolbar {
+    --background: #15eaf6;
+    background-color: transparent;
+    border-radius: 0px 0px 25px 25px;
+    height: 200px;
+}
+    .otp-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      ion-back-button {
+        --color: #fff;
+        margin-left: 0.3rem;
+      }
+  
+      .otp-subtitle {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        color: #fff;
+        margin-left: 1.3rem;
+      }
+  
+      .otp-title {
+        color: #fff;
+        font-family: Inter;
+        font-size: 30px;
+        font-weight: 600;
+        text-align: left;
+      }
+    }
+  

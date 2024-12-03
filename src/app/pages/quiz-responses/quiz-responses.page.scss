@@ -1,0 +1,23 @@
+.quiz-response-header {
+  --background: #15eaf6;
+  padding: 1rem;
+  border-radius: 0px 0px 25px 25px;
+
+  ion-title {
+    color: #fff;
+  }
+}
+  .quiz-title{
+    color: #fff;
+    font-family: Inter;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+    ion-back-button {
+      --color: #fff;
+      margin-left: 0.3rem;
+    }
+  
+

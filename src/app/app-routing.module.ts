@@ -28,25 +28,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: "logout",
-    loadChildren: () =>
-      import("./pages/logout/logout.module").then((m) => m.LogoutPageModule),
-  },
-  {
     path: "home",
-    canActivate: [AuthGuardService], 
+    canActivate: [AuthGuardService],
     loadChildren: () =>
       import("./pages/home/home.module").then((m) => m.HomePageModule),
   },
   {
-    path: "tabs",
-    canActivate: [AuthGuardService],
-    loadChildren: () =>
-      import("./pages/tabs/tabs.module").then((m) => m.TabsPageModule),
-  },
-  {
     path: "settings",
-    canActivate: [AuthGuardService], 
+    canActivate: [AuthGuardService],
     loadChildren: () =>
       import("./pages/settings/settings.module").then(
         (m) => m.SettingsPageModule
@@ -54,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: "chat",
-    canActivate: [AuthGuardService], 
+    canActivate: [AuthGuardService],
     loadChildren: () =>
       import("./pages/chat/chat.module").then((m) => m.ChatPageModule),
   },
@@ -68,11 +57,37 @@ const routes: Routes = [
   },
   {
     path: 'add-quiz',
-    loadChildren: () => import('./pages/add-quiz/add-quiz.module').then( m => m.AddQuizPageModule)
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/add-quiz/add-quiz.module').then(m => m.AddQuizPageModule)
+  },
+  {
+    path: 'edit-quiz/:id',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/add-quiz/add-quiz.module').then(m => m.AddQuizPageModule)
   },
   {
     path: 'quiz-list',
-    loadChildren: () => import('./pages/quiz-list/quiz-list.module').then( m => m.QuizListPageModule)
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/quiz-list/quiz-list.module').then(m => m.QuizListPageModule)
+  },
+  {
+    path: 'wellcome',
+    loadChildren: () => import('./pages/wellcome/wellcome.module').then(m => m.WellcomePageModule)
+  },
+  {
+    path: 'edit-profile',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/edit-profile/edit-profile.module').then(m => m.EditProfilePageModule)
+  },
+  {
+    path: 'quiz-question/:id',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/quiz-question/quiz-question.module').then(m => m.QuizQuestionPageModule)
+  },
+  {
+    path: 'quiz-responses/:id',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/quiz-responses/quiz-responses.module').then(m => m.QuizResponsesPageModule)
   },
 ];
 
@@ -82,4 +97,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

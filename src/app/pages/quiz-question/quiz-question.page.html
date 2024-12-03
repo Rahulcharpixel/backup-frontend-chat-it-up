@@ -1,0 +1,44 @@
+<ion-toolbar *ngIf="quizStore.currentQuiz" class="quiz-question-header">
+  <ion-buttons>
+    <ion-back-button defaultHref="/quiz-list"></ion-back-button>
+  </ion-buttons>
+  <ion-title class="question-title">{{ quizStore.currentQuiz.title }}</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <div class="quiz-container" *ngIf="quizStore.currentQuiz">
+    <h2 class="quiz-question">{{ quizStore.currentQuiz.quizquestion }}</h2>
+
+    <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" class="form-container">
+      <ion-list *ngIf="quizStore.currentQuiz.questionType === 'mcq'">
+        <ion-radio-group formControlName="answer" [disabled]="userHasAnswered">
+          <ion-item *ngFor="let option of options">
+            <ion-label>{{ option.option  }}</ion-label>
+            <ion-radio slot="start" [value]="option.text "></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+  
+      <ion-item *ngIf="quizStore.currentQuiz.questionType === 'text'">
+        <ion-textarea
+          formControlName="answer"
+          placeholder="Type your answer here"
+          [disabled]="userHasAnswered"
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-button
+        class="submit-answer"
+        type="submit"
+        [disabled]="userHasAnswered || quizForm.invalid"
+      >
+        Submit Answer
+      </ion-button>
+    </form>
+  </div>
+  <div *ngIf="!quizStore.currentQuiz">
+    <p>No quiz data available. Please check your connection or try again later.</p>
+  </div>
+</ion-content>
+

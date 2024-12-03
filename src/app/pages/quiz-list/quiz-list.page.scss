@@ -3,3 +3,58 @@ ion-button {
     --background: none;
     --color: none;
 }
+
+
+
+.add-button {
+    padding: 0.5rem;
+
+    ion-fab-button {
+        --background: #15eaf6;
+        --background-activated: #15eaf6;
+        --background-hover: #08b3bc;
+        --box-shadow: none;
+    }
+
+    .add-quiz {
+        height: 24px;
+        width: 24px;
+    }
+}
+
+  ion-toolbar{
+    --background: #15eaf6;
+    border-radius: 0px 0px 25px 25px;
+  }
+  ion-searchbar{
+    box-shadow: none;
+    --border-radius: 1.5rem;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: #15eaf6;
+    
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #15eaf6;
+  }
+  
+  ion-segment-button{
+    background: none;
+    color:#fff;
+    --color-checked:#fff;
+    --indicator-color:none;
+  }
+  ion-segment-button:hover{
+    --color:#FFFFFFB2
+  }
+
+  .check-response{
+    color: #15eaf6;
+  }

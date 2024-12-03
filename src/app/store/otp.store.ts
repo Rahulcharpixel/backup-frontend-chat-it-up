@@ -16,7 +16,7 @@ class OtpStore {
   setOtpInputs(inputs: string[]) {
     this.otpInputs = inputs;
     this.otp = inputs.join('');
-  }
+  } 
 
   clear() {
     this.mobile = '';

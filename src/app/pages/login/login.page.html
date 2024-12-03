@@ -1,18 +1,16 @@
-<!-- <ion-header> -->
+
   <ion-toolbar class="login-header">
-    <ion-buttons slot="start">
+    <ion-buttons>
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title class="login-title">Login</ion-title>
     <p class="login-subtitle">Enter your 10-digit mobile number to continue.</p>
   </ion-toolbar>
-<!-- </ion-header> -->
+
+  
 
 <ion-content>
   <div class="login-container">
-    <!-- <h2>Login</h2>
-    <p>Enter your 10-digit mobile number to continue.</p> -->
-
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <ion-item lines="none">
         <fieldset class="input-item">
@@ -47,7 +45,7 @@
     </form>
 
     <p class="register-prompt">
-      Don't have an account?
+      Don't have an account?&nbsp;&nbsp;
       <a class="registration-link" routerLink="/registration">Register</a>
     </p>
   </div>

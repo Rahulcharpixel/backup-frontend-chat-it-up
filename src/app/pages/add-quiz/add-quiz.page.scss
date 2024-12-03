@@ -1,8 +1,34 @@
 
-.add-button{
+.add-quiz{
     height: 50px;
-    --border-radius: 28px;
+    border-radius: 28px;
     margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    --box-shadow: none;
+    --background: #15eaf6;
+    cursor: pointer;
+  }
+  .quiz-container{
+    padding: 0 1rem;
+  }
+  .option-type{
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    border-style: none;
+  }
+  ion-item > div{
+    border-style: none;
+  }
+  .option-type-container{
+    display: flex;
+    align-items: center;
+  }
+  .add-button{
+    // height: 50px;
+    --border-radius: 28px;
+    // margin-top: 3rem;
     margin-left: 2rem;
     margin-right: 2rem;
     --box-shadow: none;

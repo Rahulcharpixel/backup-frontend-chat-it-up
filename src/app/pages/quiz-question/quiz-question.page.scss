@@ -1,0 +1,39 @@
+.quiz-question-header {
+  --background: #15eaf6;
+  padding: 1rem;
+  border-radius: 0px 0px 25px 25px;
+
+  ion-title {
+    color: #fff;
+  }
+}
+  .question-title{
+    color: #fff;
+    font-family: Inter;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+    ion-back-button {
+      --color: #fff;
+      margin-left: 0.3rem;
+    }
+
+    .quiz-question{
+      padding: 1rem;
+    }
+    .form-container{
+      margin: 1rem ;
+    }
+
+  .submit-answer{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    --box-shadow: none;
+    --background: #15eaf6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    }

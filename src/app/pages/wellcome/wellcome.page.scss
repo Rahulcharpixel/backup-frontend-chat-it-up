@@ -1,0 +1,33 @@
+.container {
+  background-color: #15eaf6;
+  background-image: url("../../../assets/images/wellcome-background.svg");
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.chat-icon {
+  width: 80px;
+  height: auto;
+  opacity: 0.9;
+}
+.auth-buttons {
+  display: flex;
+  margin: 2rem;
+}
+
+ion-button{
+  --box-shadow: none;
+
+}
+// .signup-button {
+// box-shadow: none;
+// }

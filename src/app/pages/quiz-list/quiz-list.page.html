@@ -1,20 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Quiz List</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="addQuiz()">Add Quiz</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<!-- <ion-toolbar>
+   <div class="search-container">
+    <ion-searchbar placeholder="Search quiz..." show-cancel-button="focus" (ionInput)="onSearchChange($event)"></ion-searchbar>
+  </div> 
+  <div class="tab-container">
+    <ion-segment [(ngModel)]="selectedSegment">
+      <ion-segment-button value="default">
+        <ion-label>Quiz</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>My Quiz</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-toolbar>
 
-<ion-content >
-  <ion-list *ngIf="quizStore.quizzes.length > 0; else noQuizzes">
-    <ion-item *ngFor="let quiz of quizStore.quizzes">
+<ion-content>
+  <ion-list *ngIf="selectedSegment === 'default' && quizStore.allQuizzes.length > 0; else noQuizzes" (click)="gotoQuizQuestion()">
+    <ion-item *ngFor="let quiz of quizStore.allQuizzes">
       <ion-label>
         <h2>{{ quiz.title }}</h2>
+        <p>{{quiz.quizquestion}}</p>
+        <p>Subcategories: {{ quiz.subcategories.length}}</p>
+      </ion-label>
+      <ion-button *ngIf="quizStore.myQuizzes.includes(quiz) && quiz._id" (click)="editQuiz(quiz._id)">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="quizStore.myQuizzes.includes(quiz) && quiz._id" (click)="deleteQuiz(quiz._id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="selectedSegment === 'segment' && quizStore.myQuizzes.length > 0; else noQuizzes">
+    <ion-item *ngFor="let quiz of quizStore.myQuizzes">
+      <ion-label>
+        <h2>{{ quiz.title }}</h2>
+        <p>{{quiz.quizquestion}}</p>
         <p>Subcategories: {{ quiz.subcategories.length }}</p>
       </ion-label>
-      <ion-button *ngIf="quiz._id" (click)="updateQuiz(quiz._id)">
+      <ion-button *ngIf="quiz._id" (click)="editQuiz(quiz._id)">
         <ion-icon name="pencil-outline"></ion-icon>
       </ion-button>
       <ion-button *ngIf="quiz._id" (click)="deleteQuiz(quiz._id)">
@@ -23,9 +47,110 @@
     </ion-item>
   </ion-list>
 
+
   <ng-template #noQuizzes>
-    <ion-item>
+    <ion-item *ngIf="(selectedSegment === 'default' && quizStore.allQuizzes.length === 0) || 
+                      (selectedSegment === 'segment' && quizStore.myQuizzes.length === 0)">
       <ion-label>No quizzes available. Add a quiz to get started.</ion-label>
     </ion-item>
   </ng-template>
+
+  <ion-fab
+  horizontal="end"
+  vertical="bottom"
+  slot="fixed"
+  routerLink="/add-quiz"
+  class="add-button"
+>
+  <ion-fab-button>
+    <ion-img class="add-quiz" src="/assets/icon/chat-group.svg"></ion-img>
+  </ion-fab-button>
+</ion-fab> 
+</ion-content> -->
+
+
+
+
+<ion-toolbar>
+  <div class="search-container">
+    <ion-searchbar
+      placeholder="Search quiz..."
+      show-cancel-button="focus"
+      (ionInput)="onSearchChange($event)"
+    ></ion-searchbar>
+  </div>
+  <div class="tab-container">
+    <ion-segment [(ngModel)]="selectedSegment">
+      <ion-segment-button value="default">
+        <ion-label>Quiz</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>My Quiz</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-toolbar>
+
+<ion-content>
+  <ng-container *ngIf="selectedSegment === 'default'">
+    <ion-list *ngIf="quizStore.allQuizzes.length > 0; else noAllQuizzes">
+      <ion-item *ngFor="let quiz of quizStore.allQuizzes" (click)="gotoQuizQuestion(quiz._id!)">
+        <ion-label>
+          <h2>{{ quiz.title }}</h2>
+          <p>{{ quiz.quizquestion }}</p>
+          <p>Subcategories: {{ quiz.subcategories.length }}</p>
+        </ion-label>
+        <ion-button *ngIf="quizStore.myQuizzes.includes(quiz) && quiz._id">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="quizStore.myQuizzes.includes(quiz) && quiz._id">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ng-template #noAllQuizzes>
+      <ion-item>
+        <ion-label>No quizzes available. Add a quiz to get started.</ion-label>
+      </ion-item>
+    </ng-template>
+  </ng-container>
+
+  <div *ngIf="selectedSegment === 'segment'">
+    <ion-list *ngIf="quizStore.myQuizzes.length > 0; else noMyQuizzes">
+      <ion-item *ngFor="let quiz of quizStore.myQuizzes">
+        <ion-label>
+          <h2>{{ quiz.title }}</h2>
+          <p>{{ quiz.quizquestion }}</p>
+          <p>Subcategories: {{ quiz.subcategories.length }}</p>
+        </ion-label>
+        <ion-button *ngIf="quiz._id" (click)="editQuiz(quiz._id)">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="quiz._id" (click)="deleteQuiz(quiz._id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button class="check-response"  (click)="checkResponse(quiz._id!)">Check Response</ion-button>
+      </ion-item>
+    </ion-list>
+    <ng-template #noMyQuizzes>
+      <ion-item>
+        <ion-label>No quizzes available. Add a quiz to get started.</ion-label>
+      </ion-item>
+    </ng-template>
+  </div>
+
+  <ion-fab
+  horizontal="end"
+  vertical="bottom"
+  slot="fixed"
+  routerLink="/add-quiz"
+  class="add-button"
+>
+  <ion-fab-button>
+    <ion-img class="add-quiz"  src="/assets/icon/chat-group.svg"></ion-img>
+  </ion-fab-button>
+</ion-fab> 
+<!-- <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll> -->
 </ion-content>

@@ -1,0 +1,29 @@
+ion-content {
+  --padding-top: 0;
+}
+
+.setting-title {
+  --background: #15eaf6;
+  padding: 1rem;
+  border-radius: 0px 0px 25px 25px;
+
+  ion-title {
+    color: #fff;
+  }
+}
+
+ion-card {
+  margin: 10px;
+}
+
+ion-item h2 {
+  font-weight: bold;
+  font-family: Inter;
+}
+
+ion-avatar img {
+  border-radius: 50%;
+}
+ion-label {
+  font-family: Inter !important ;
+}

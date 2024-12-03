@@ -28,7 +28,16 @@
 
 
 
+body {
+  background: #E9FEFE  !important;
+}
+ion-content {
+  --background: #E9FEFE  !important;
+}
+ion-list > div{
+  --background: #E9FEFE  !important;
 
+}
 
 
 @font-face {

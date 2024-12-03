@@ -13,20 +13,11 @@ legend {
   }
 }
 
-.input-item {
-  padding-left: 20px;
-  width: 100%;
-  border-radius: 28px;
-  border: 2px solid #15eaf6;
-  height: 70px;
-  ion-input {
-    margin-top: -12px;
-  }
-}
-.ion-item {
+ion-item {
   margin-top: 20px;
+  --background: none;
 }
-.login-button{
+.login-button {
   height: 50px;
   --border-radius: 28px;
   margin-top: 3rem;
@@ -45,58 +36,53 @@ legend {
   align-items: center;
   justify-content: center;
   color: #191919cc;
- 
 
-  .registration-link{
+  .registration-link {
     color: #15eaf6;
     text-decoration: none;
-   cursor: pointer;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
 }
 
-
-.login-container{
-border-radius: 25px;
+.login-container {
+  border-radius: 25px;
 }
-
-
 
 ion-toolbar {
-  background-color: transparent;
   --background: #15eaf6;
-  border-radius: 25px;
+  background-color: transparent;
+  border-radius: 0px 0px 25px 25px;
   height: 200px;
+  box-shadow: 0px 1px 20px 0px #00000026;
+  padding: 0.75rem;
 }
-  .login-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    ion-back-button {
-      --color: #fff;
-      margin-left: 0.3rem;
-    }
+  ion-back-button {
+    --color: #fff;
+    margin-left: 0.3rem;
+  }
 
-    .login-subtitle {
-      font-family: Inter;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 16px;
-      text-align: left;
-      color: #fff;
-      margin-left: 1.3rem;
-    }
+  .login-subtitle {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    color: #fff;
+    margin-left: 1.3rem;
+  }
 
-    .login-title {
-      color: #fff;
-      font-family: Inter;
-      font-size: 30px;
-      font-weight: 600;
-      line-height: 30px;
-      text-align: left;
+  .login-title {
+    color: #fff;
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: left;
   }
 }
-

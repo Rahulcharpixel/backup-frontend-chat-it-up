@@ -1,35 +1,140 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
+    <ion-back-button></ion-back-button>
     <ion-title>{{ quizId ? 'Edit Quiz' : 'Add Quiz' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" class="quiz-container">
     <ion-item>
-      <!-- <ion-label position="floating">Quiz Title</ion-label> -->
       <ion-input [(ngModel)]="quizStore.currentQuiz.title" name="title" required placeholder="Quiz Title"></ion-input>
     </ion-item>
-
     <ion-list>
       <ion-item *ngFor="let subcategory of quizStore.currentQuiz.subcategories; let i = index">
-        <!-- <ion-label position="floating">Select Subcategory</ion-label> -->
-        <ion-select [(ngModel)]="subcategory.name" name="subcategoryName{{i}}" required placeholder="Select Subcategory">
-          <ion-select-option *ngFor="let option of predefinedSubcategories"  [value]="option">
+        <ion-select [(ngModel)]="subcategory.name" name="subcategoryName{{i}}" required
+          placeholder="Select Subcategory">
+          <ion-select-option *ngFor="let option of predefinedSubcategories" [value]="option">
             {{ option }}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
     <ion-item>
-      <!-- <ion-label position="floating">Quiz Question</ion-label> -->
-      <ion-textarea [(ngModel)]="quizStore.currentQuiz.quizquestion"  name="quizquestion" required placeholder="Quiz Question"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <!-- <ion-label position="floating">Small Test Answer</ion-label> -->
-      <ion-input [(ngModel)]="quizStore.currentQuiz.smallTestAnswer"  name="smallTestAnswer"  placeholder="Small Test Answer"> </ion-input>
+      <ion-textarea [(ngModel)]="quizStore.currentQuiz.quizquestion" name="quizquestion" required placeholder="Quiz Question"></ion-textarea>
     </ion-item>
 
+    <ion-item>
+      <ion-label>Question Type</ion-label>
+      <ion-radio-group [(ngModel)]="quizStore.currentQuiz.questionType" name="questionType" required>
+        <ion-item>
+          <ion-label>Text</ion-label>
+          <ion-radio value="text"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Multiple Choice</ion-label>
+          <ion-radio value="multiple-choice"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+
+   
     <ion-button class="add-button" expand="full" type="submit">{{ quizId ? 'Update Quiz' : 'Add Quiz' }}</ion-button>
   </form>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+    <ion-title>{{ quizId ? 'Edit Quiz' : 'Add Quiz' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" class="quiz-container">
+    <ion-item>
+      <ion-input
+        formControlName="title"
+        placeholder="Quiz Title"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item
+        *ngFor="let subcategory of quizStore.currentQuiz.subcategories; let i = index"
+      >
+        <ion-select
+          [(ngModel)]="quizStore.currentQuiz.subcategories[i]"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Select Subcategory"
+        >
+          <ion-select-option
+            *ngFor="let option of predefinedSubcategories"
+            [value]="option"
+          >
+            {{ option }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-textarea
+        formControlName="quizquestion"
+        placeholder="Quiz Question"
+        required
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item class="option-type-container">
+      <ion-label>Question Type</ion-label>
+      <ion-radio-group
+        formControlName="questionType"
+        required
+        class="option-type"
+      >
+        <ion-item>
+          <ion-label>Text</ion-label>
+          <ion-radio value="text"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Multiple Choice</ion-label>
+          <ion-radio value="mcq"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+    <div *ngIf="quizForm.get('questionType')?.value === 'mcq'">
+      <ion-item *ngFor="let option of options.controls; let i = index">
+        <ion-input
+          [formControl]="$any(option)"
+          placeholder="Option {{ i + 1 }}"
+          required
+        ></ion-input>
+        <ion-button
+          *ngIf="i >= 2"
+          fill="clear"
+          color="danger"
+          (click)="removeOption(i)"
+        >
+          Remove
+        </ion-button>
+      </ion-item>
+      <ion-button expand="block" (click)="addOption()" class="add-button"
+        >Add Option</ion-button
+      >
+    </div>
+
+    <ion-button class="add-quiz" expand="full" type="submit">
+      {{ quizId ? 'Update Quiz' : 'Add Quiz' }}
+    </ion-button>
+  </form>
 </ion-content>
+
+
+
+
+
+
+
+

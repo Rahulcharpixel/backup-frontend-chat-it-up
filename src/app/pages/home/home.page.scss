@@ -1,17 +1,9 @@
-ion-fab-button {
+
+
+  ion-toolbar{
     --background: #15eaf6;
-    --background-activated: #15eaf6;
-    --background-hover: #08b3bc;
-    --box-shadow: none
-
- 
-}
-.add-button{
-    margin-bottom: 2rem;
+    border-radius: 0px 0px 25px 25px;
+    color:#fff;
     padding: 1rem;
-}
-.add-quiz{
-height: 24px;
-width: 24px;
-
-}
+  }
+  

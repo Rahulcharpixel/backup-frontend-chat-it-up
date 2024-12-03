@@ -7,7 +7,8 @@ import { OtpService } from './services/otp.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent {    
+  isLoggedIn: boolean = false;
 
   constructor(private otpService: OtpService, private router: Router) {
     this.checkLoginStatus();
@@ -16,9 +17,16 @@ export class AppComponent {
   checkLoginStatus() {
     setTimeout(() => {  
       if (!this.otpService.isAuthenticated()) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/wellcome']);
       }
     }, 0);  
+  }
+
+  checkAuth() {
+    this.isLoggedIn = !!localStorage.getItem('authToken'); 
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/wellcome']);
+    }
   }
 }
 

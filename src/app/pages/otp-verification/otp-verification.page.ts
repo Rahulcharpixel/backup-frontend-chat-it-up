@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from "@angular/forms";
 import { OtpService } from "../../services/otp.service";
 import { Router } from "@angular/router";
 import { otpStore } from "../../store/otp.store";
-import { IonInput } from "@ionic/angular";
+import { IonInput, LoadingController } from "@ionic/angular";
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: "app-otp-verification",
@@ -18,7 +19,8 @@ export class OtpVerificationPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private otpService: OtpService,
-    private router: Router
+    private router: Router,
+    private loadingController: LoadingController,
   ) {
     this.otpForm = this.fb.group({
       otpInputs: this.fb.array(
@@ -55,20 +57,29 @@ export class OtpVerificationPage implements OnInit {
     }
   }
 
-  verify() {
+  async verify() {
     if (this.otpForm.valid) {
+      const loading = await this.loadingController.create({
+        spinner: 'circles',
+        duration: 5000,
+      });
+      await loading.present();
       const mobile = otpStore.mobile;
       const otp = this.otpControls.value.join("");
       this.otpService.verify({ mobile, otp }).subscribe({
-        next: (response: any) => {
+        next: async (response: any) => {
+          const token = response.token;
           localStorage.setItem("authToken", response.token);
-          console.log("JWT Token:", response.token);
-          alert(response.message)
-          // console.log(response.message);
+
+          const decodedToken: any = jwtDecode(token);
+          localStorage.setItem("userId", decodedToken.id);
+          await loading.dismiss();
+
           this.router.navigateByUrl('/home');
           otpStore.clear();
         },
-        error: (error) => {
+        error: async (error) => {
+          await loading.dismiss();
           console.error("Error verifying OTP", error);
           alert(error.error.message);
         },
@@ -76,7 +87,12 @@ export class OtpVerificationPage implements OnInit {
     }
   }
 
-  resendOtp() {
+  async resendOtp() {
+    const loading = await this.loadingController.create({
+      spinner: 'circles',
+      duration: 5000,
+    });
+    await loading.present();
     const mobile = otpStore.mobile;
     if (!mobile) {
       alert("No mobile number available to resend OTP.");
@@ -84,12 +100,14 @@ export class OtpVerificationPage implements OnInit {
     }
 
     this.otpService.login(mobile).subscribe({
-      next: (response: any) => {
+      next: async (response: any) => {
         console.log(response.message);
         console.log(response.otp);
-        alert("OTP sent successfully!");
+        alert(`OTP sent successfully! to ${mobile}`);
+        await loading.dismiss();
       },
-      error: (error) => {
+      error: async (error) => {
+        await loading.dismiss();
         console.error("Error sending OTP", error);
         alert(error.error.message);
       },
