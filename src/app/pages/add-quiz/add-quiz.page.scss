@@ -1,37 +1,87 @@
+.add-quiz-header {
+  --background: #15eaf6;
+  padding: 1rem;
+  border-radius: 0px 0px 25px 25px;
 
-.add-quiz{
-    height: 50px;
-    border-radius: 28px;
-    margin-top: 3rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+  ion-title {
+    color: #fff;
+  }
+  .add-quiz-title {
+    color: #fff;
+    font-family: Raleway;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  ion-back-button {
+    --color: #fff;
+    margin-left: 0.3rem;
+  }
+}
+
+.quiz-container {
+  padding: 0;
+  margin: 1rem;
+
+  .submit-btn {
     --box-shadow: none;
     --background: #15eaf6;
     cursor: pointer;
-  }
-  .quiz-container{
-    padding: 0 1rem;
-  }
-  .option-type{
     display: flex;
-    justify-content: center;
-    box-shadow: none;
+    height: 50px;
+  }
+
+  ion-item > div {
     border-style: none;
   }
-  ion-item > div{
-    border-style: none;
-  }
-  .option-type-container{
+  .option-type-container {
     display: flex;
     align-items: center;
+
+    .option-type {
+      display: flex;
+      justify-content: center;
+      box-shadow: none;
+      border-style: none;
+    }
   }
-  .add-button{
-    // height: 50px;
+  ion-button {
     --border-radius: 28px;
-    // margin-top: 3rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+  }
+  .add-button {
     --box-shadow: none;
     --background: #15eaf6;
     cursor: pointer;
+    width: 50%;
+    margin: 1rem 0rem;
   }
+
+  .remove-option {
+    height: 1.2rem;
+    width: 1.2rem;
+    cursor: pointer;
+  }
+}
+ion-input,
+ion-select {
+  margin: 0.5rem 0rem;
+}
+.custom-input {
+  --border-color: #ccc;
+  --label-color: #000; 
+}
+
+.custom-input:focus-within {
+  --border-color: #15eaf6;
+  --label-color: #15eaf6; 
+}
+
+.custom-input .native-input {
+  border: 1px solid var(--border-color);
+}
+
+.custom-input .input-label {
+  color: var(--label-color); 
+}
+

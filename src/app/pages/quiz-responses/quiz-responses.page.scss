@@ -6,18 +6,50 @@
   ion-title {
     color: #fff;
   }
-}
-  .quiz-title{
+
+  .quiz-title {
     color: #fff;
-    font-family: Inter;
+    font-family: Raleway;
     font-size: 1.2rem;
     font-weight: 600;
     text-align: left;
   }
 
-    ion-back-button {
-      --color: #fff;
-      margin-left: 0.3rem;
-    }
-  
+  ion-back-button {
+    --color: #fff;
+    margin-left: 0.3rem;
+  }
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.title{
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.3rem;
+  font-family: 'Raleway';
+  font-weight: 600;
+}
+.response-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #0000000d;
+  background-color: #b5e2e233;
+  border-radius: 4px;
+  box-shadow: none;
 
+  .status-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    ion-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+}

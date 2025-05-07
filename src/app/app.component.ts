@@ -17,7 +17,7 @@ export class AppComponent {
   checkLoginStatus() {
     setTimeout(() => {  
       if (!this.otpService.isAuthenticated()) {
-        this.router.navigate(['/wellcome']);
+        this.router.navigate(['/login']);
       }
     }, 0);  
   }

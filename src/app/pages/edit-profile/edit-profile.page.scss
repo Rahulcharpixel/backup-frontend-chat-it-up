@@ -1,69 +1,92 @@
 .profile-container {
-    legend {
-        color: #15eaf6;
+  legend {
+    color: #15eaf6;
+  }
+  .input-item {
+    margin: 0.5rem 1rem;
+    padding-left: 20px;
+    width: 100%;
+    border-radius: 28px;
+    border: 2px solid #15eaf6;
+    height: 70px;
+    
+    ion-input {
+      margin-top: -9px;
+      font-family: Raleway;
     }
-    .input-item {
-        margin: 0.5rem 1rem;
-        padding-left: 20px;
-        width: 100%;
-        border-radius: 28px;
-        border: 2px solid #15eaf6;
-        height: 70px;
-        ion-input {
-            margin-top: -12px;
-        }
-    }
+  }
 
-    .update-button {
-        height: 50px;
-        margin-top: 3rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        --box-shadow: none;
-        --background: #15eaf6;
-        --border-radius: 25px;
-        cursor: pointer;
-    }
+  .update-button {
+    height: 50px;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    --box-shadow: none;
+    --background: #15eaf6;
+    --border-radius: 25px;
+    font-family: Raleway;
+    cursor: pointer;
+  }
 
-    ion-item {
-        margin-top: 20px;
-        --background: none;
-    }
+  ion-item {
+    margin-top: 20px;
+    --background: none;
+  }
 }
 
 ion-avatar {
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    cursor: pointer;
-    margin-top: 1rem;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
 ion-avatar ion-img {
-    border-radius: 50%;
-    border: 3px solid #00aaff;
+  border-radius: 50%;
+  border: 3px solid #15eaf6;
 }
 
-ion-avatar::after {
-    content: "Change profile";
-    display: block;
-    text-align: center;
-    font-size: 0.8em;
-    color: #888;
-    margin-top: 5px;
+p {
+  text-align: center;
+  font-size: 0.8em;
+  color: #191919e5;
+  margin-top: 5px;
+  display: flex;
+  font-family: Raleway;
 }
 
 ion-toolbar {
-    --background: #15eaf6;
-    background-color: transparent;
-    border-radius: 0px 0px 25px 25px;
-    padding: 1rem;
+  --background: #15eaf6;
+  background-color: transparent;
+  border-radius: 0px 0px 25px 25px;
+  padding: 1rem;
 
-    ion-back-button {
-        --color: #fff;
-        margin-left: 0.3rem;
-    }
-    .title {
-        color: #fff;
-    }
+  ion-back-button {
+    --color: #fff;
+    margin-left: 0.3rem;
+  }
+  .title {
+    color: #fff;
+    font-family: Raleway;
+  }
+}
+
+
+
+.mobile-input-container {
+  display: flex;
+ align-items: center;
+  gap: 10px;
+}
+
+.country-code {
+  max-width: 90px;
+  min-width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-5px);
+  --highlight-color: none;
 }

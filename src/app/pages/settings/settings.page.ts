@@ -2,7 +2,6 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-import { OtpService } from 'src/app/services/otp.service';
 import { UserProfileStore } from 'src/app/store/user-profile.store';
 
 @Component({
@@ -44,12 +43,15 @@ export class SettingsPage implements OnInit {
   }
 
   logout() {
+    if (confirm('Are you sure you want to Logout your account?')) {
     this.authGuardService.logout();
     this.router.navigate(['/login']);
+    }
   }
 
   deleteAccount() {
     if (confirm('Are you sure you want to delete your account?')) {
+      if (confirm('If you delete an account, you will permanently lose all data associated with that account')) {
       const userId = this.userService.getUserIdFromToken();
       if (userId) {
         this.userService.deleteAccount(userId).subscribe(
@@ -64,7 +66,7 @@ export class SettingsPage implements OnInit {
           }
         );
       }
-    }
+    }}
   }
 
 }

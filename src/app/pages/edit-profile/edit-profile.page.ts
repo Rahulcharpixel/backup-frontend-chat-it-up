@@ -13,7 +13,7 @@ export class EditProfilePage implements OnInit {
   editProfileForm: FormGroup;
   selectedImage: File | null = null;
   imageUrl: string | null = null;
-  
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -23,6 +23,7 @@ export class EditProfilePage implements OnInit {
     this.editProfileForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      countryCode: ['+91', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
@@ -38,8 +39,10 @@ export class EditProfilePage implements OnInit {
       this.editProfileForm.setValue({
         name: userProfile.name,
         email: userProfile.email,
+        countryCode: userProfile.countryCode || '+91',
         mobile: userProfile.mobile,
       });
+
     }
   }
 

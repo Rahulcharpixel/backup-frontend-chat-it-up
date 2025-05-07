@@ -1,0 +1,40 @@
+<ion-toolbar class="chat-group-header-container">
+  <ion-title>Chat Groups</ion-title>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/quiz-list"></ion-back-button>
+    <!-- <ion-icon  name="close-outline" class="close-icon"></ion-icon> -->
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <div *ngIf="groups.length > 0; else noGroups">
+    <ion-list>
+
+      <ion-item *ngFor="let group of groups">
+        <ion-label>
+          <h2 *ngIf="group.quizId; else noQuiz">{{ group.quizId.title }}</h2>
+          <ng-template #noQuiz>
+            <h2>Untitled Quiz</h2>
+          </ng-template>
+          <p *ngIf="group.creatorId?.name">Created by: {{ group.creatorId.name }}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button (click)="viewMembers(group)">
+            <ion-icon name="people-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="openChat(group)">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <ng-template #noGroups>
+    <p>No quiz chat groups available.</p>
+  </ng-template>
+</ion-content>
+
+<app-group-members *ngIf="selectedGroup" [roomId]="selectedGroup.roomId" [isOpen]="showMembersModal">
+</app-group-members>

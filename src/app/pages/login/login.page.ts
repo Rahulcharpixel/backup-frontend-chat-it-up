@@ -19,6 +19,7 @@ export class LoginPage {
     private loadingController: LoadingController
   ) {
     this.loginForm = this.fb.group({
+      countryCode: ['+91', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     });
   }
@@ -31,10 +32,14 @@ export class LoginPage {
       });
       await loading.present();
 
-      this.otpService.login(this.loginForm.value.mobile).subscribe({
+      const fullMobileNumber = this.loginForm.value.countryCode + this.loginForm.value.mobile;
+
+      this.otpService.login(fullMobileNumber).subscribe({
         next: async (response: any) => {
+          alert(`Your OTP is: ${response.otp}`)
           console.log(`Your OTP is: ${response.otp}`);
           localStorage.setItem('mobile', this.loginForm.value.mobile);
+          localStorage.setItem('countryCode', this.loginForm.value.countryCode);
           localStorage.setItem('authToken', response.token);
           await loading.dismiss();
           this.router.navigate(['/otp-verification']);

@@ -1,0 +1,9 @@
+<div *ngIf="quizId; else noQuiz">
+  <div class="chart-container">
+    <canvas #barChartCanvas></canvas>
+  </div>
+</div>
+
+<ng-template #noQuiz>
+  <p class="no-data">No quiz selected.</p>
+</ng-template>

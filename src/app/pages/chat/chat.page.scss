@@ -1,18 +1,236 @@
-.sender {
-    background-color: #d9fdd3;
-    margin-left: auto;
-    margin-right: 10px;
-    border-radius: 8px;
+.chat-header {
+  --background: #15eaf6;
+  padding: 0.5rem;
+  border-radius: 0px 0px 25px 25px;
+}
+
+ion-title {
+  color: #fff;
+}
+
+ion-back-button {
+  --color: #fff !important;
+  margin-left: 0.3rem;
+}
+
+.more-details{
+  color: #fff;
+}
+
+.chat-container {
+  background-image: url("../../../assets/images/chat-background.svg");
+  padding: 10px;
+  height: calc(100% - 120px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+ion-list {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+ion-item {
+  --background: transparent;
+  border: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  --inner-border-width: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+ion-item.sent {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: 50%;
+  padding: 10px 14px;
+  border-radius: 15px;
+  background-color: #f1f0f0;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.message-options {
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.message-options-menu {
+  position: absolute;
+  top: 0;
+  right: -30px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  z-index: 10;
+}
+
+.message-options-menu ion-icon {
+  font-size: 18px;
+  color: #ff3b30;
+  cursor: pointer;
+}
+
+ion-item.sent .message-bubble {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+ion-item.received .message-bubble {
+  background-color: #fff;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.message-bubble h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.message-bubble p {
+  margin: 0;
+  font-size: 1rem;
+  color: #111;
+}
+
+.deleted-message {
+  font-style: italic;
+  color: #999 !important;
+  opacity: 0.7;
+  // text-decoration: line-through;
+}
+
+.timestamp {
+  font-size: 0.7rem;
+  color: #999;
+  text-align: right;
+  margin-top: 5px;
+  display: block;
+}
+
+.message-input-container {
+  align-items: center;
+  padding: 0.5rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.smile-emoji {
+  --background: none;
+  --box-shadow: none;
+  padding: 10px;
+  margin-right: 0;
+  border: 1px solid #ccc;
+  border-radius: 2rem 0rem 0rem 2rem;
+}
+
+.message-input {
+  flex: 1;
+  margin-right: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0rem 2rem 2rem 0rem;
+  border-left: none;
+  --padding-start: 10px;
+  --highlight-color:none;
+}
+
+.send-button {
+  --background: #15eaf6;
+  --color: #fff;
+  --border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: none;
+  --box-shadow: none;
+}
+
+  .profile, .clear-chat, .block-user{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0rem 1rem;
   }
-  
-  .recipient {
-    background-color: #f1f0f0;
-    margin-left: 10px;
-    margin-right: auto;
-    border-radius: 8px;
+
+.system-message-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.system-message {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #666;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  max-width: 80%;
+  text-align: center;
+}
+
+.group-deleted-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 80%;
+  text-align: center;
+
+  ion-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
-  
-  ion-item {
+
+  p {
     margin: 5px 0;
+    color: #d32f2f;
+    font-weight: 500;
   }
-  
+}
+
+.message-input-container.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+// Alert button styles
+.delete-message-alert {
+  .alert-button-group {
+    .cancel-button {
+      color: #000000 !important;
+    }
+
+    .delete-button {
+      color: #ff3b30 !important;
+    }
+  }
+}
+

@@ -1,0 +1,5 @@
+export const BASE_URL = "http://localhost:3000/api"
+export const BASE_URL_VERIFY = "http://localhost:3000/api/verify"
+export const BASE_URL_CHAT = "http://localhost:3000/api/chat"
+export const BASE_URL_USER = "http://localhost:3000/api/user"
+export const API_BASE_URL = "http://localhost:3000"

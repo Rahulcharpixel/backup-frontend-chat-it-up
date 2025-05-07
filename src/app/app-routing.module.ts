@@ -2,10 +2,11 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "./services/auth-guard.service";
 
+
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home",
+    redirectTo: "quiz-list",
     pathMatch: "full",
   },
   {
@@ -28,12 +29,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: "home",
-    canActivate: [AuthGuardService],
-    loadChildren: () =>
-      import("./pages/home/home.module").then((m) => m.HomePageModule),
-  },
-  {
     path: "settings",
     canActivate: [AuthGuardService],
     loadChildren: () =>
@@ -42,18 +37,10 @@ const routes: Routes = [
       ),
   },
   {
-    path: "chat",
+    path: "chat/:roomId",
     canActivate: [AuthGuardService],
     loadChildren: () =>
       import("./pages/chat/chat.module").then((m) => m.ChatPageModule),
-  },
-  {
-    path: "chat-request",
-    canActivate: [AuthGuardService],
-    loadChildren: () =>
-      import("./pages/chat-request/chat-request.module").then(
-        (m) => m.ChatRequestPageModule
-      ),
   },
   {
     path: 'add-quiz',
@@ -89,6 +76,19 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/quiz-responses/quiz-responses.module').then(m => m.QuizResponsesPageModule)
   },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'terms-and-conditions',
+    loadChildren: () => import('./pages/terms-and-conditions/terms-and-conditions.module').then( m => m.TermsAndConditionsPageModule)
+  },
+  {
+    path: 'quiz-group-list',
+    loadChildren: () => import('./pages/quiz-group-list/quiz-group-list.module').then( m => m.QuizGroupListPageModule)
+  },
+
 ];
 
 @NgModule({

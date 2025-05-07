@@ -2,24 +2,36 @@
   <ion-buttons>
     <ion-back-button defaultHref="/quiz-list"></ion-back-button>
   </ion-buttons>
-  <ion-title class="question-title">{{ quizStore.currentQuiz.title }}</ion-title>
+  <ion-icon
+    class="trash-icon"
+    name="trash-sharp"
+    (click)="deleteAnswer()"
+  ></ion-icon>
+  <div>
+    <ion-title class="question-title"
+      >{{ quizStore.currentQuiz.title }}</ion-title
+    >
+  </div>
 </ion-toolbar>
 
 <ion-content>
   <div class="quiz-container" *ngIf="quizStore.currentQuiz">
     <h2 class="quiz-question">{{ quizStore.currentQuiz.quizquestion }}</h2>
 
-    <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" class="form-container">
-      <ion-list *ngIf="quizStore.currentQuiz.questionType === 'mcq'">
-        <ion-radio-group formControlName="answer" [disabled]="userHasAnswered">
+    <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" class="form-container" >
+      <ion-list *ngIf="quizStore.currentQuiz.questionType === 'mcq'" >
+        <ion-radio-group formControlName="answer" [attr.disabled]="userHasAnswered">
           <ion-item *ngFor="let option of options">
-            <ion-label>{{ option.option  }}</ion-label>
-            <ion-radio slot="start" [value]="option.text "></ion-radio>
+            <ion-label>{{ option.option }}</ion-label>
+            <ion-radio
+              slot="start"
+              [value]="option.option"
+              [disabled]="userHasAnswered"
+            ></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>
 
-  
       <ion-item *ngIf="quizStore.currentQuiz.questionType === 'text'">
         <ion-textarea
           formControlName="answer"
@@ -31,14 +43,16 @@
       <ion-button
         class="submit-answer"
         type="submit"
-        [disabled]="userHasAnswered || quizForm.invalid"
+        [disabled]="quizForm.invalid"
+        *ngIf="!userHasAnswered"
       >
         Submit Answer
       </ion-button>
     </form>
   </div>
   <div *ngIf="!quizStore.currentQuiz">
-    <p>No quiz data available. Please check your connection or try again later.</p>
+    <p>
+      No quiz data available. Please check your connection or try again later.
+    </p>
   </div>
 </ion-content>
-

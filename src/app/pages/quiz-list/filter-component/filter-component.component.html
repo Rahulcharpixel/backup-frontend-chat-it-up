@@ -1,0 +1,33 @@
+<ion-toolbar class="filter-header-container">
+  <ion-title>Filter</ion-title>
+  <ion-buttons slot="end">
+    <ion-icon (click)="dismiss()" name="close-outline" class="close-icon"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <div class="filter-chips">
+    <p>Type Filter:</p>
+    <ion-chip *ngFor="let type of filterTypes" [ngClass]="{ 'active-color': selectedFilters.type === type.value }"
+      (click)="toggleFilter('type', type.value)">
+      <ion-label>{{ type.label }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <div class="sub-filter-chips">
+    <p>Subcategory Filter:</p>
+    <ion-chip *ngFor="let subcategory of predefinedSubcategories"
+      [ngClass]="{ 'active-color': selectedFilters.subcategory === subcategory }"
+      (click)="toggleFilter('subcategory', subcategory)">
+      <ion-label>{{ subcategory }}</ion-label>
+    </ion-chip>
+  </div>
+
+
+  <div class="buttons">
+
+    <ion-button (click)="resetFilters()" class="reset">Reset</ion-button>
+    <ion-button (click)="submitFilters()" class="submit">Submit</ion-button>
+  </div>
+
+</ion-content>

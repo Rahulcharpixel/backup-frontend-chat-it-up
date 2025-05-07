@@ -1,11 +1,10 @@
-
-  <ion-toolbar class="register-header">
-    <ion-buttons>
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="register-title">Register</ion-title>
-    <p class="register-subtitle">Fill up your details to register.</p>
-  </ion-toolbar>
+<ion-toolbar class="register-header">
+  <ion-buttons>
+    <ion-back-button defaultHref="/"></ion-back-button>
+  </ion-buttons>
+  <ion-title class="register-title">Register</ion-title>
+  <p class="register-subtitle">Fill up your details to register.</p>
+</ion-toolbar>
 
 <ion-content>
   <div class="register-container">
@@ -14,39 +13,52 @@
         <fieldset class="input-item">
           <legend class="label">Full Name</legend>
           <ion-input formControlName="name" type="text" placeholder="Enter your name"></ion-input>
-          <div
-            *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)"
-            class="error-message">
-            <small *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</small>
-          </div>
         </fieldset>
       </ion-item>
+      <div
+        *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)"
+        class="error-message">
+        <small *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</small>
+      </div>
 
       <ion-item lines="none">
         <fieldset class="input-item">
           <legend>Email Id</legend>
           <ion-input formControlName="email" placeholder="Enter your email" type="email"></ion-input>
-          <div
-            *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)"
-            class="error-message">
-            <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
-            <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
-          </div>
         </fieldset>
       </ion-item>
+      <div
+        *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)"
+        class="error-message">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+      </div>
 
       <ion-item lines="none">
         <fieldset class="input-item">
           <legend>Mobile</legend>
-          <ion-input formControlName="mobile" placeholder="Enter mobile number" type="tel" maxlength="10"></ion-input>
-          <div
-            *ngIf="registerForm.get('mobile')?.invalid && (registerForm.get('mobile')?.touched || registerForm.get('mobile')?.dirty)"
-            class="error-message">
-            <small *ngIf="registerForm.get('mobile')?.errors?.['required']">Mobile number is required.</small>
-            <small *ngIf="registerForm.get('mobile')?.errors?.['pattern']">Mobile number must be 10 digits.</small>
+
+          <div class="mobile-input-container">
+
+            <ion-select formControlName="countryCode" interface="popover" class="country-code">
+              <ion-select-option value="+1">🇺🇸 +1</ion-select-option>
+              <ion-select-option value="+91" selected>🇮🇳 +91</ion-select-option>
+              <ion-select-option value="+44">🇬🇧 +44</ion-select-option>
+              <ion-select-option value="+61">🇦🇺 +61</ion-select-option>
+              <ion-select-option value="+81">🇯🇵 +81</ion-select-option>
+            </ion-select>
+
+            <ion-input formControlName="mobile" placeholder="Enter mobile number" type="tel" maxlength="10"></ion-input>
           </div>
         </fieldset>
       </ion-item>
+
+      <div
+        *ngIf="registerForm.get('mobile')?.invalid && (registerForm.get('mobile')?.touched || registerForm.get('mobile')?.dirty)"
+        class="error-message">
+        <small *ngIf="registerForm.get('mobile')?.errors?.['required']">Mobile number is required.</small>
+        <small *ngIf="registerForm.get('mobile')?.errors?.['pattern']">Mobile number must be 10 digits.</small>
+      </div>
 
       <ion-button expand="block" class="register-button" type="submit"
         [disabled]="registerForm.invalid">Register</ion-button>
@@ -54,7 +66,7 @@
 
     <p class="login-prompt">
       Already have an account?&nbsp;&nbsp;
-      <a routerLink="/login" class="login-link" >Login</a>
+      <a routerLink="/login" class="login-link">Login</a>
     </p>
   </div>
 </ion-content>

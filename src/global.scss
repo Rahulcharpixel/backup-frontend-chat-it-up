@@ -29,23 +29,22 @@
 
 
 body {
-  background: #E9FEFE  !important;
+  background: #fff  !important;
 }
-ion-content {
-  --background: #E9FEFE  !important;
-}
-ion-list > div{
-  --background: #E9FEFE  !important;
+// ion-content {
+//   --background: #E9FEFE  !important;
+// }
+// ion-list > div{
+//   --background: #E9FEFE  !important;
 
-}
+// }
 
-
-@font-face {
-    font-family: "Inter";
+  @font-face {
+    font-family: "Raleway";
     font-style: normal;
     src:
-      local("Inter"),
-      url("./assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
+      local("Raleway"),
+      url("./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf") format("truetype");
   }
 /**
  * Ionic Dark Mode
@@ -56,3 +55,4 @@ ion-list > div{
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
+

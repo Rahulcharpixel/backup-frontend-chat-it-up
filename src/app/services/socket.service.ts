@@ -1,25 +1,34 @@
-import { Socket } from 'ngx-socket-io';
+
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { io,Socket } from 'socket.io-client';
+import { API_BASE_URL } from '../Constants/baseurls.const';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  constructor(private socket: Socket) {}
+   private socket: Socket;
 
-  joinChat(chatId: string) {
-    this.socket.emit('joinChat', { chatId });
-  }
-
-  sendMessage(chatId: string, senderId: string, content: string) {
-    this.socket.emit('sendMessage', { chatId, senderId, content });
-  }
-
-  receiveMessage() {
-    return this.socket.fromEvent('newMessage');
-  }
-
-  leaveChat(chatId: string) {
-    this.socket.emit('leaveChat', { chatId });
-  }
+  constructor(private http: HttpClient) {
+      this.socket = io(API_BASE_URL, {
+        transports: ['websocket'],
+        reconnection: true,
+      });
+  
+      this.socket.on('connect', () => {
+        console.log('Socket connected!', this.socket.id);
+      });
+  
+      this.socket.on('disconnect', () => {
+        console.log('Socket disconnected!');
+      });
+    }
+    joinRoom(roomId: string, userId: string) {
+      this.socket.emit('joinRoom', { roomId, userId });
+    }
+  
+    onMessage(callback: (data: any) => void) {
+      this.socket.on('newMessage', callback);
+    }
 }

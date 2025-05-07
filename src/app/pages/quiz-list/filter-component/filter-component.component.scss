@@ -1,0 +1,100 @@
+.filter-header-container {
+  --background: #15eaf6;
+  padding: 1rem;
+  border-radius: 0px 0px 25px 25px;
+
+  ion-title {
+    color: #fff;
+  }
+  ion-back-button {
+    --color: #fff;
+    margin-left: 0.3rem;
+  }
+  .close-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+.filter-chips {
+  margin-top: 1rem;
+  padding: 1rem;
+
+  p {
+    font-family: Raleway;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.sub-filter-chips {
+  padding: 1rem;
+}
+
+ion-chip {
+  position: relative;
+  --background: #fff;
+  border: 1px solid #0000000d;
+  font-family: Raleway;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+ion-chip:hover::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #15eaf6;
+  transition: width 0.2s ease-in-out;
+}
+
+.submit {
+  color: #fff;
+  border: 1px solid #0000000d;
+  --box-shadow: none;
+  --background: #15eaf6;
+  border-radius: 2rem;
+}
+.reset {
+  color: #fff;
+  border: 1px solid #0000000d;
+  --box-shadow: none;
+  --background: #ff4c4c;
+  border-radius: 2rem;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+}
+
+ion-chip {
+  --color: black; 
+  --background: #fff; 
+}
+
+.filter-chips ion-chip:hover {
+  --background: #15eaf6; 
+  --color: #fff;
+}
+
+.sub-filter-chips ion-chip:hover {
+  --background: #15eaf6; 
+  --color: #fff;
+}
+
+.active-color {
+  --ion-color-base: #15eaf6 !important;
+  background-color: #fff !important;
+  color: #15eaf6  !important;
+  font-weight: 600;
+}
+

@@ -21,6 +21,7 @@ export class RegistrationPage {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      countryCode: ['+91', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
@@ -32,8 +33,9 @@ export class RegistrationPage {
         duration: 5000,
       });
        loading.present();
-
-      this.otpService.registerUser(this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.mobile)
+       const fullMobileNumber = this.registerForm.value.countryCode + this.registerForm.value.mobile;
+       
+      this.otpService.registerUser(this.registerForm.value.name, this.registerForm.value.email, fullMobileNumber)
         .subscribe({
           next: async (response: any) => {
             console.log(response.message);

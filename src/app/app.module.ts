@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
 
@@ -11,15 +11,14 @@ import { LoginPageModule } from "./pages/login/login.module";
 import { OtpVerificationPageModule } from "./pages/otp-verification/otp-verification.module";
 import { ReactiveFormsModule } from "@angular/forms";
 
-
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { TabsComponent } from "./components/tabs/tabs.component";
 
-// Provide your Socket.IO server URL
-const config: SocketIoConfig = { url: 'http://localhost:80', options: {} };
+const config: SocketIoConfig = { url: '', options: {} };
 
 @NgModule({
-  declarations: [AppComponent,TabsComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -28,9 +27,10 @@ const config: SocketIoConfig = { url: 'http://localhost:80', options: {} };
     OtpVerificationPageModule,
     ReactiveFormsModule,
     HttpClientModule,
-   
+
     SocketIoModule.forRoot(config)
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }],
   bootstrap: [AppComponent],
 })

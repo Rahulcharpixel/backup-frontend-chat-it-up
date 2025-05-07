@@ -1,23 +1,41 @@
 
-  <ion-toolbar class="quiz-response-header">
-    <ion-buttons>
-      <ion-back-button defaultHref="/quiz-list"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="quiz-title">Responses for {{ quizTitle }}</ion-title>
-  </ion-toolbar>
+<ion-toolbar class="quiz-response-header">
+  <ion-buttons>
+    <ion-back-button defaultHref="/quiz-list"></ion-back-button>
+  </ion-buttons>
+  <ion-title class="quiz-title">Responses for {{ quizTitle }}</ion-title>
+</ion-toolbar>
 
-
+<div>
+  <app-quiz-response-stats></app-quiz-response-stats>
+</div>
+<ion-item-divider></ion-item-divider>
 <ion-content>
+  <p class="title">Responses</p>
   <ion-list>
-    <ion-item *ngFor="let response of responses">
+    <ion-card
+      *ngFor="let response of responses"
+      class="response-container"
+    >
       <ion-avatar slot="start">
-        <ion-img></ion-img>
+        <ion-img src="assets/avatar-placeholder.png"></ion-img>
       </ion-avatar>
-      <ion-label>
-        <h2>{{ response.name }}</h2>
-        <p>Answer: {{ response.answers.option || response.answers }}</p>
-      </ion-label>
-      <p>{{ response.answeredAt | date }}</p>
-    </ion-item>
+      <ion-card-header>
+        <ion-card-title>{{ response.userId?.name || "Unknown User" }}</ion-card-title>
+
+        <ion-card-subtitle>
+          <strong>Answer:</strong>
+          <span *ngIf="response.answers">
+            {{ response.answers }}
+          </span>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="date">
+          <p>{{ response.answeredAt | date }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>

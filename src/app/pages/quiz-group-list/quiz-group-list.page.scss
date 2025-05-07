@@ -1,0 +1,100 @@
+// .search-container {
+//   display: flex;
+//   align-items: center;
+//   padding: 0 10px;
+
+//   .setting-icon {
+//     font-size: 24px;
+//     margin: 0 10px;
+//     cursor: pointer;
+//   }
+// }
+
+// .quiz-container {
+//   margin: 10px;
+//   border-radius: 10px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+//   ion-card-header {
+//     padding: 15px;
+
+//     ion-card-title {
+//       font-size: 18px;
+//       font-weight: 600;
+//       margin-bottom: 8px;
+//     }
+
+//     ion-card-subtitle {
+//       font-size: 14px;
+//       color: var(--ion-color-medium);
+//     }
+//   }
+// }
+
+// .add-button {
+//   margin-bottom: 20px;
+//   margin-right: 20px;
+
+//   ion-fab-button {
+//     --background: var(--ion-color-primary);
+//   }
+
+//   .add-quiz {
+//     width: 24px;
+//     height: 24px;
+//   }
+// }
+.chat-group-header-container {
+  --background: #15eaf6;
+  padding: 0.5rem;
+  border-radius: 0px 0px 25px 25px;
+}
+
+ion-title {
+  color: #fff;
+}
+
+ion-back-button {
+  --color: #fff !important;
+  margin-left: 0.3rem;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  --background: #ffffff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-item h2 {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+ion-item p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+ion-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --border-radius: 50%;
+  height: 36px;
+  width: 36px;
+}
+
+ion-button ion-icon {
+  font-size: 20px;
+}
+
+ion-buttons {
+  display: flex;
+  gap: 8px;
+}

@@ -12,14 +12,35 @@ legend {
   border-radius: 28px;
   border: 2px solid #15eaf6;
   height: 70px;
+  display: flex;
+  align-items: center;
   ion-input {
-    margin-top: -12px;
+    margin-top: -7px;
   }
 }
 
 ion-item {
   margin-top: 20px;
   --background: none;
+
+
+
+  .mobile-input-container {
+    display: flex;
+   align-items: center;
+    gap: 10px;
+  }
+
+  .country-code {
+    max-width: 90px;
+    min-width: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-5px);
+    --highlight-color: none;
+  }
 }
 
 .register-button {
@@ -30,10 +51,14 @@ ion-item {
   --box-shadow: none;
   --background: #15eaf6;
   cursor: pointer;
+  --border-radius: 1.9rem;
 }
 .error-message {
   color: red;
-  font-size: 0.8em;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
 }
 .login-prompt {
   display: flex;
@@ -69,7 +94,7 @@ ion-toolbar {
     }
 
     .register-subtitle {
-      font-family: Inter;
+      font-family: Raleway;
       font-size: 16px;
       font-weight: 400;
       text-align: left;
@@ -79,7 +104,7 @@ ion-toolbar {
 
     .register-title {
       color: #fff;
-      font-family: Inter;
+      font-family: Raleway;
       font-size: 30px;
       font-weight: 600;
       text-align: left;

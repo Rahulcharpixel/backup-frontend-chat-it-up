@@ -1,0 +1,47 @@
+<div class="group-members-container" [style.display]="displayStyle">
+  <ion-toolbar class="group-members-header">
+    <ion-title>Group Members</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close-outline" class="close-icon"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-content>
+    <div *ngIf="isLoading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading members...</p>
+    </div>
+
+    <div *ngIf="!isLoading">
+      <div class="creator-section" *ngIf="roomCreator">
+        <h3>Creator</h3>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="roomCreator.avatar || 'assets/images/placeholder-image.jpg'" alt="placeholder-image">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ roomCreator.name }}</h2>
+            <p>{{ roomCreator.email }}</p>
+          </ion-label>
+          <ion-badge color="primary" slot="end">Creator</ion-badge>
+        </ion-item>
+      </div>
+
+      <div class="members-section">
+        <h3>Members ({{ roomUsers.length }})</h3>
+        <ion-list>
+          <ion-item *ngFor="let user of roomUsers">
+            <ion-avatar slot="start">
+              <img [src]="user.avatar || 'assets/images/placeholder-image.jpg'" alt="placeholder-image">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ user.name }}</h2>
+              <p>{{ user.email }}</p>
+            </ion-label>
+            <ion-badge *ngIf="user._id === userId" color="secondary" slot="end">You</ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</div>

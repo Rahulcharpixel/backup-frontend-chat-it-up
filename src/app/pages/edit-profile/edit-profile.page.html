@@ -4,7 +4,6 @@
     <ion-back-button defaultHref="/settings"></ion-back-button>
     <ion-title class="title">Edit Profile</ion-title>
   </ion-buttons>
-  
 </ion-toolbar>  
 
 <ion-content>
@@ -13,6 +12,8 @@
   <div class="profile-container"  *ngIf="!userProfileStore.loading || !userProfileStore.error">
     <ion-avatar slot="start">
       <ion-img [src]="imageUrl"></ion-img>
+      <p>Change Profile  <ion-icon src="/assets/icon/user-edit.svg"></ion-icon>
+      </p>
     </ion-avatar>
     <form [formGroup]="editProfileForm" (ngSubmit)="updateProfile()">
       <ion-item lines="none">
@@ -29,10 +30,28 @@
         </fieldset>
       </ion-item>
 
-      <ion-item lines="none">
+      <!-- <ion-item lines="none">
         <fieldset class="input-item">
           <legend>Mobile</legend>
           <ion-input formControlName="mobile" type="tel" maxlength="10" placeholder="Enter mobile number"></ion-input>
+        </fieldset>
+      </ion-item> -->
+      <ion-item lines="none">
+        <fieldset class="input-item">
+          <legend>Mobile</legend>
+
+          <div class="mobile-input-container">
+
+            <ion-select formControlName="countryCode" interface="popover" class="country-code">
+              <ion-select-option value="+1">🇺🇸 +1</ion-select-option>
+              <ion-select-option value="+91" selected>🇮🇳 +91</ion-select-option>
+              <ion-select-option value="+44">🇬🇧 +44</ion-select-option>
+              <ion-select-option value="+61">🇦🇺 +61</ion-select-option>
+              <ion-select-option value="+81">🇯🇵 +81</ion-select-option>
+            </ion-select>
+
+            <ion-input formControlName="mobile" placeholder="Enter mobile number" type="tel" maxlength="10"></ion-input>
+          </div>
         </fieldset>
       </ion-item>
 

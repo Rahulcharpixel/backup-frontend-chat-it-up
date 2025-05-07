@@ -1,0 +1,19 @@
+.chat-group-header-container {
+    --background: #15eaf6;
+    padding: 1rem;
+    border-radius: 0px 0px 25px 25px;
+  
+    ion-title {
+      color: #fff;
+    }
+    ion-back-button {
+      --color: #fff;
+      margin-left: 0.3rem;
+    }
+    .close-icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  }

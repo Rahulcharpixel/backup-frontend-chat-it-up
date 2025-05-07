@@ -7,33 +7,43 @@
     <p class="login-subtitle">Enter your 10-digit mobile number to continue.</p>
   </ion-toolbar>
 
-  
-
 <ion-content>
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <ion-item lines="none">
         <fieldset class="input-item">
           <legend>Mobile</legend>
-          <ion-input
-            formControlName="mobile"
-            placeholder="Enter mobile number"
-            type="tel"
-            maxlength="10"
-          ></ion-input>
-          <div
-            *ngIf="loginForm.get('mobile')?.invalid && (loginForm.get('mobile')?.touched || loginForm.get('mobile')?.dirty)"
-            class="error-message"
-          >
-            <small *ngIf="loginForm.get('mobile')?.errors?.['required']"
-              >Mobile number is required.</small
-            >
-            <small *ngIf="loginForm.get('mobile')?.errors?.['pattern']"
-              >Mobile number must be 10 digits.</small
-            >
+      
+          <div class="mobile-input-container">
+        
+            <ion-select formControlName="countryCode" interface="popover" class="country-code">
+              <ion-select-option value="+1">🇺🇸 +1</ion-select-option>
+              <ion-select-option value="+91" selected>🇮🇳 +91</ion-select-option>
+              <ion-select-option value="+44">🇬🇧 +44</ion-select-option>
+              <ion-select-option value="+61">🇦🇺 +61</ion-select-option>
+              <ion-select-option value="+81">🇯🇵 +81</ion-select-option>
+            </ion-select>
+      
+            <ion-input
+              formControlName="mobile"
+              placeholder="Enter mobile number"
+              type="tel"
+              maxlength="10"
+            ></ion-input>
           </div>
         </fieldset>
       </ion-item>
+      <div
+      *ngIf="loginForm.get('mobile')?.invalid && (loginForm.get('mobile')?.touched || loginForm.get('mobile')?.dirty)"
+      class="error-message"
+    >
+      <small *ngIf="loginForm.get('mobile')?.errors?.['required']"
+        >Mobile number is required.</small
+      >
+      <small *ngIf="loginForm.get('mobile')?.errors?.['pattern']"
+        >Mobile number must be 10 digits.</small
+      >
+    </div>
 
       <ion-button
         expand="block"
